@@ -1,0 +1,41 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+   
+   <var name="user" class="com.niit.shoppingcart.model.User"/>	
+   
+       
+    <view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp" model="user">
+        <transition on="customerInfoCollected" to="collectShippingDetail" />
+    </view-state>
+
+    <view-state id="collectShippingDetail" view="collectShippingDetail.jsp" model="user">
+        <transition on="shippingDetailCollected" to="orderConfirmation" />
+        <transition on="backToCollectCustomerInfo" to="collectCustomerInfo" />
+    </view-state>
+
+    <view-state id="orderConfirmation">
+        <transition on="orderConfirmed" to="thankCustomer" />
+        <transition on="backToCollectShippingDetail" to="collectShippingDetail" />
+    </view-state>
+
+    <action-state id="processOrder">
+                <transition to="thankCustomer" />
+    </action-state>
+
+     <view-state id="thankCustomer" model="order">
+        <transition to="endState" />
+    </view-state>
+
+    <end-state id="endState" />
+
+    <view-state id="invalidCartWarning">
+        <transition to="endState" />
+    </view-state>
+
+    <end-state id="cancelCheckout" view="checkOutCancelled.jsp" />
+
+    <global-transitions>
+        <transition on="cancel" to="cancelCheckout" />
+    </global-transitions>
+</flow>
