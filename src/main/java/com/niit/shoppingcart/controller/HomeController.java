@@ -1,4 +1,5 @@
 package com.niit.shoppingcart.controller;
+
 import com.google.gson.Gson;
 import com.niit.shoppingcart.dao.ChairDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
@@ -41,72 +42,48 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 @Controller
-public class HomeController
-{	
+public class HomeController {
 	Logger log = LoggerFactory.getLogger(HomeController.class);
-	
+
 	@RequestMapping("/")
-	public ModelAndView onLoad()
-	{  
-		       log.debug("Starting of the method onLoad");
-		       ModelAndView mv=new ModelAndView("index");
-		       log.debug("Ending of the method onLoad");
-		       return mv; 
+	public ModelAndView onLoad() {
+		log.debug("Starting of the method onLoad");
+		ModelAndView mv = new ModelAndView("index");
+		log.debug("Ending of the method onLoad");
+		return mv;
 	}
-	@RequestMapping("/home")
-	public ModelAndView directToHome()
-	{  
-		       log.debug("Starting of the method directToHome");
-		       ModelAndView mv=new ModelAndView("home");
-		       log.debug("Ending of the method directToHome");
-		       return mv; 
-	}
+
 	@RequestMapping("/loginPage")
-	public ModelAndView loginHere()
-	{  
-		       log.debug("Starting of the method loginHere");
-		       ModelAndView mv=new ModelAndView("loginPage");
-		       log.debug("Ending of the method loginHere");
-		       return mv; 
-	}   
-		    	 
-		    @RequestMapping("/landPage")
-			public ModelAndView landPage()
-			{  
-		    	       log.debug("starting of the method landPage");
-				       ModelAndView mv=new ModelAndView("index");
-				       log.debug("Ending of the method landPage");
-				       return mv; 
-			}
-		    
-		    @RequestMapping("/logout")
-			public ModelAndView logOutPage()
-    		{
- 				log.debug("Starting of the method logOutPage");
-				ModelAndView mv = new ModelAndView("index");
-				log.debug("Ending of the method logOutPage");
-				return mv;
-			}
-		 
-		    @RequestMapping(value="/loginPage", method = RequestMethod.GET)
-			 public String loginPage() 
-			 {	 
-		       log.debug("Starting of the method loginPage");
-		       return "loginPage";
-			 }
-			 
-			 @RequestMapping(value="/fail2login", method = RequestMethod.GET)
-			 public ModelAndView loginError(ModelMap model) 
-			 {
-				   log.debug("Starting of the method loginError");
-				   return new ModelAndView("loginPage","error",true);	 
-			 }
-			
-			
-			 
-			 
-			 
-						   
+	public ModelAndView loginHere() {
+		log.debug("Starting of the method loginHere");
+		ModelAndView mv = new ModelAndView("loginPage");
+		log.debug("Ending of the method loginHere");
+		return mv;
+	}
+
+	@RequestMapping("/logout")
+	public ModelAndView logOutPage() {
+		log.debug("Starting of the method logOutPage");
+		ModelAndView mv = new ModelAndView("index");
+		log.debug("Ending of the method logOutPage");
+		return mv;
+	}
+
+	@RequestMapping(value = "/fail2login", method = RequestMethod.GET)
+	public ModelAndView loginError(ModelMap model) {
+		log.debug("Starting of the method loginError");
+		return new ModelAndView("loginPage", "error", true);
+	}
+
+	// @RequestMapping("/landPage")
+	// public ModelAndView landPage()
+	// {
+	// log.debug("starting of the method landPage");
+	// ModelAndView mv=new ModelAndView("index");
+	// log.debug("Ending of the method landPage");
+	// return mv;
+	// }
+
 }
-    				 

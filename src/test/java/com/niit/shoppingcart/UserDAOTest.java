@@ -10,7 +10,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.dao.UserDAO;
-import com.niit.shoppingcart.model.Login;
 import com.niit.shoppingcart.model.Supplier;
 import com.niit.shoppingcart.model.User;
 
@@ -20,8 +19,7 @@ public class UserDAOTest
 	 static UserDAO userDAO;
 	@Autowired
 	 static User user;
-	@Autowired
-	 static Login login;
+	
 	@Autowired
 	static	AnnotationConfigApplicationContext context;
 
@@ -32,7 +30,6 @@ public class UserDAOTest
 		context.scan("com.niit.shoppingcart");
 		context.refresh();
 		
-		login=(Login)context.getBean("login");
 		user=(User)context.getBean("user");
 		userDAO=(UserDAO)context.getBean("userDAO");
 		
@@ -53,20 +50,10 @@ public class UserDAOTest
 		user.setCountry("india");
 		user.setZipCode("509886");
 		user.setState("telangana");
-		user.setEnabled(true);
+		user.setStatus(true);
 		Assert.assertEquals("save Test Case",true,userDAO.saveUser(user));
 	}
 
-	@Test
-	public void testSave()
-	{
-	login.setId(10);
-	login.setUsername("subbu");
-	login.setPassword("subbu");
-	login.setRole("ROLE_USER");
-	login.setStatus(true);
-	userDAO.save(login);
-		
-	}
+	
 }
 

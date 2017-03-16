@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,15 +35,7 @@ public class SupplierController
 		return new Supplier();
 	}
 
-	@RequestMapping("/manageSupplier")
-	public ModelAndView manageSuppliers() 
-	{
-		log.debug("Starting of the method manageSuppliers");
-		ModelAndView mv = new ModelAndView("manageSuppliers");
-		log.debug("Ending of the method manageSuppliers");
-		return mv;
-	}
-	
+		
 	@RequestMapping("addSupplier")
 	public ModelAndView addSupplier() 
 	{
@@ -53,7 +46,7 @@ public class SupplierController
 	}
 	
 	@RequestMapping("storeSupplier")
-	public String storeSupplier(HttpServletRequest request, @Valid @ModelAttribute("Supplier") Supplier supplier,
+	public String storeSupplier(HttpServletRequest request, @Validated @ModelAttribute("Supplier") Supplier supplier,
 			BindingResult result)
 	{
 		log.debug("Starting of the method storeSupplier");
@@ -66,14 +59,16 @@ public class SupplierController
 		return "manageSuppliers";
 
 	}
-	@RequestMapping("manageSuppliers")
-	public ModelAndView displaySuppliers() 
+	
+	@RequestMapping("/manageSupplier")
+	public ModelAndView manageSuppliers() 
 	{
-		log.debug("Starting of the method displaySuppliers");
+		log.debug("Starting of the method manageSuppliers");
 		ModelAndView mv = new ModelAndView("manageSuppliers");
-		log.debug("Ending of the method displaySuppliers");
+		log.debug("Ending of the method manageSuppliers");
 		return mv;
 	}
+
 
 	@RequestMapping(value = "listSuppliers", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String showList()
@@ -95,16 +90,7 @@ public class SupplierController
 		log.debug("Ending of the method deleteSupplier");
 		return mv;
 	}
-	
 
-//	@RequestMapping("viewsupplier")
-//	public ModelAndView viewSupplier() 
-//	{
-//		log.debug("Starting of the method viewSupplier");
-//		ModelAndView m6 = new ModelAndView("viewSupplier");
-//		log.debug("Ending of the method viewSupplier");
-//		return m6;
-//	}
 	@RequestMapping(value = "viewSupplier", method = RequestMethod.GET)
 	public ModelAndView viewSuppliers(@RequestParam int id, @ModelAttribute Supplier suppliers) 
 	{
@@ -114,15 +100,7 @@ public class SupplierController
 		return new ModelAndView("viewSupplier", "supplier", supplier);
 	}
 	 		 
-//	 @RequestMapping("editsupplier")
-//		public ModelAndView editSupplier() 
-//	    {
-//		    log.debug("Starting of the method editSupplier");
-//			ModelAndView m6 = new ModelAndView("editsupplier");
-//			log.debug("End of the method editSupplier");
-//			return m6;
-//
-//		}		 		 
+		 		 
 	 @RequestMapping(value="editSupplier",method=RequestMethod.GET)
 	    public ModelAndView editSupplier(@RequestParam int id)
 	    {
@@ -135,7 +113,7 @@ public class SupplierController
 	 @RequestMapping(value="updateSupplier",method=RequestMethod.POST)
 	    public ModelAndView updateSupplier(HttpServletRequest request,@Valid @ModelAttribute("Supplier")Supplier supplier,BindingResult result,Model model)
 	    {
-		    log.debug("Starting of the method updateSupplier");   
+		    log.debug("Starting of the method updateSupplier"); 
 		    supplierDAO.update(supplier);
 		    log.debug("End of the method updateSupplier");
 			return new ModelAndView("manageSuppliers");

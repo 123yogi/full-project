@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shoppingcart.dao.UserDAO;
-import com.niit.shoppingcart.model.Login;
 import com.niit.shoppingcart.model.User;
 
 
@@ -65,26 +64,6 @@ public boolean saveUser(User user)
 	
 	}
 			
-@Transactional
-public boolean save(Login login)
-{
-	logger.debug("Starting of the method save");
-	try 
-	{
-		sessionFactory.getCurrentSession().saveOrUpdate(login);
-		logger.debug("Ending of the method : save ");
-		return true;
-	} 
-	catch (HibernateException e) 
-	{
-		e.printStackTrace();
-		return false;
-	}
-	
-	}
-
-
-	
 
 }
 	

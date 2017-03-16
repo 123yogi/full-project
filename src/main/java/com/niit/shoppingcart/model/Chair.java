@@ -1,4 +1,6 @@
 package com.niit.shoppingcart.model;
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
@@ -14,25 +19,40 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity  
+@Table
 @Component
-public class Chair
+public class Chair implements Serializable
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="chairId")
 	int chairId;
+	@NotNull
+	@Size(min=2,max=30,message="*Enter Chair Name")
 	@Column(name="chairName")
 	String chairName;
+	@NotNull
+	@Min(5)
 	@Column(name="chairPrice")
 	int chairPrice;
+	@NotNull
+	@Size(min=2,max=30,message="*Enter Chair Description")
 	@Column(name="chairDesc")
 	String chairDesc;
+	@NotNull
+	@Size(min=2,max=30,message="*Enter Chair chairStyle")
 	@Column(name="chairStyle")
 	String chairStyle;
+	@NotNull
+	@Size(min=2,max=30,message="*Enter Chair Warranty")
 	@Column(name="warranty")
 	String warranty;
+	@NotNull
+	@Size(min=2,max=30,message="*Enter Chair PrimaryMeterial")
 	@Column(name="primaryMeterial")
 	String primaryMeterial;
+	@NotNull
+	@Size(min=2,max=30,message="*Enter Chair Capacity")
 	@Column(name="capacity")
 	String capacity;
 	 	

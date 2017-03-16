@@ -34,7 +34,7 @@
 <div class="container">
 
 <c:url var="addUser" value="addUser"></c:url>
-   <form:form commandName="user" method="post" action="storeUser">
+   <form:form  commandName="user" method="post" action="storeUser">
    <form:errors path="*" cssClass="errStyle" element="div" />
 <div class="form-group">
  	<form:label  path="name">

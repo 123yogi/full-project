@@ -79,8 +79,12 @@ import org.springframework.stereotype.Component;
 		 @NotNull
 		 @Size(min=2,max=30)
 		 @Column(name="zipCode")
-		private String zipCode;		 
-		private boolean enabled=true;
+		private String zipCode;	
+		 @NotNull
+		 @Size(min=2,max=30)
+		 @Column(name="role")
+		 private String role="ROLE_USER";
+		private boolean status=true;
 		public int getId() {
 			return id;
 		}
@@ -153,11 +157,18 @@ import org.springframework.stereotype.Component;
 		public void setZipCode(String zipCode) {
 			this.zipCode = zipCode;
 		}
-		public boolean isEnabled() {
-			return enabled;
+		public String getRole() {
+			return role;
 		}
-		public void setEnabled(boolean enabled) {
-			this.enabled = enabled;
+		public void setRole(String role) {
+			this.role = role;
 		}
+		public boolean isStatus() {
+			return status;
+		}
+		public void setStatus(boolean status) {
+			this.status = status;
+		}
+		
 	}
 			

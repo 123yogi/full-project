@@ -69,7 +69,7 @@ fieldset.scheduler-border {
   <button type="submit"  class="btn btn-default" >Submit</button>
   <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
-<center><h4>Not A User ? <a href="newUser">Sign Up Here</a></h4></center>
+<center><h4>Not A User ? <a href="register">Sign Up Here</a></h4></center>
 
 </div></fieldset></form>
 </div>

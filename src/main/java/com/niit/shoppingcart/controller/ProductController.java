@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -70,8 +71,8 @@ private static final Logger log = LoggerFactory.getLogger(ProductController.clas
     	return new Chair();
     }
 	
-	 @RequestMapping("/storeChair")
-	    public String addChairs(HttpServletRequest request,@Valid @ModelAttribute("chair")Chair chair,BindingResult result)
+	 @RequestMapping(value="/storeChair", method = RequestMethod.POST)
+	    public String addChairs(HttpServletRequest request,@Validated @ModelAttribute("chair")Chair chair,BindingResult result)
 	           {
 		 log.debug("Starting of the method addChairs");
 		      	if(result.hasErrors())
@@ -167,11 +168,11 @@ private static final Logger log = LoggerFactory.getLogger(ProductController.clas
 	    }
 	    
 	    @RequestMapping(value="viewProduct",method=RequestMethod.GET)
-	    public ModelAndView viewPro(@RequestParam int id, @ModelAttribute Chair chairs)
+	    public ModelAndView viewProduct(@RequestParam int id, @ModelAttribute Chair chairs)
 	    {
-	    	log.debug("Starting of the method viewPro");
+	    	log.debug("Starting of the method viewProduct");
 	    	Chair chair=chairDAO.getSingleChair(id);
-	    	log.debug("End of the method viewPro");
+	    	log.debug("End of the method viewProduct");
 	    	return new ModelAndView("viewProduct","chair",chair);
 	    	
 	    }
